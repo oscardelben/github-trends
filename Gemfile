@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem 'sinatra', '1.1.2'
+gem 'bundler'
 
 gem 'nokogiri', '1.4.4'
 gem 'builder', '3.0.0'
