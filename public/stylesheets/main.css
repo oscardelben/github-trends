@@ -1,0 +1,29 @@
+body {
+  margin: 0,
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:14px;
+}
+
+#container {
+  width:600px;
+  margin:30px auto;
+}
+
+li {
+  list-style-type:dot;
+}
+
+a {
+  color:blue;
+}
+
+a.feed {
+  font-size:11px;
+  color:#652a5d;
+}
+
+#footer p {
+  font-size:11px;
+  margin-top:60px
+}

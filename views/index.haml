@@ -1,0 +1,30 @@
+!!! 5
+%html
+  %head
+    %title Github Trends
+    %link{:rel => "stylesheet", :href => "/stylesheets/main.css", :type => "text/css"}
+  %body
+    #container
+      %h1 Github Trends
+
+      %div
+        <a href="https://github.com/oscardelben/github-trends"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://assets2.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_right_red_aa0000.png&path=" alt="Fork me on GitHub"></a>
+
+      %p
+        Finally, an easier way of keeping track of what's popular on Github. Each link below represents a rss feed of the corresponding page that you would find on Github. <a href="https://github.com/languages/Ruby">Example</a>.
+      %p
+        Just choose your language below and feel free to subscribe to as many feeds as you want. Feedback? Drop me an email at info [at] oscardelben.com.
+
+      %h3 Languages
+
+      - @languages.each do |language|
+        %h4
+          = language
+          %ul
+            - @contexts.each do |context|
+              %li
+                %a{:href => "/languages/#{language}/#{context}.xml", :class => 'feed'}
+                  = context.gsub('_', ' ').capitalize
+
+      #footer
+        %p A project by <a href="http://oscardelben.com">Oscar Del Ben</a>.

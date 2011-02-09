@@ -22,7 +22,9 @@ LANGUAGES = ['ActionScript', 'Ada', 'Arc', 'Asp', 'Assembly', 'Boo', 'C', 'C#', 
 CONTEXTS = ['most_watched_today', 'most_watched_this_week', 'most_watched_this_month', 'most_watched_overall', 'most_forked_today', 'most_forked_this_week', 'most_forked_this_month', 'most_forked_overall']
 
 get "/" do
-  settings.environment.to_s
+  @languages = LANGUAGES
+  @contexts = CONTEXTS
+  haml(:index)
 end
 
 get "/languages/:language/:context.xml" do
