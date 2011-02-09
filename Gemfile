@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gem 'sinatra', '1.1.2'
 gem 'bundler'
-gem 'RedCloth', '4.2.6'
+gem 'RedCloth', '>= 4.2.3'
 
 gem 'nokogiri', '1.4.4'
 gem 'builder', '3.0.0'

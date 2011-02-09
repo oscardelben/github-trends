@@ -13,14 +13,9 @@ $:.unshift File.dirname(__FILE__)
 
 require 'parser'
 
-configure do
-  disable :run
-  set :root, File.dirname(__FILE__) + '/../'
-end
-
-configure :production do
-  set :cache_enabled, true
-end
+disable :run
+set :root, File.dirname(__FILE__) + '/../'
+set :cache_enabled, true # production
 
 LANGUAGES = ['ActionScript', 'Ada', 'Arc', 'Asp', 'Assembly', 'Boo', 'C', 'C#', 'C++', 'Clojure', 'CoffeeScript', 'ColdFusion', 'Common Lisp', 'D', 'Delphi', 'Dubi', 'Eiffel', 'Emacs Lisp', 'Erlang', 'F#', 'Factor', 'FORTRAN', 'Go', 'Groovy', 'Haskell', 'HaXe', 'Io', 'Java', 'JavaScript', 'Lua', 'Max/MSP', 'Nu', 'Objective-C', 'Objective-J', 'OCaml', 'ooc', 'Perl', 'PHP', 'Pure Data', 'Python', 'R', 'Racket', 'Ruby', 'Scala', 'Scheme', 'sclang', 'Self', 'Shell', 'SmallTalk', 'SuperCollider', 'Tcl', 'Vala', 'Verilog', 'VHDL', 'VimL', 'Visual Basic', 'XQuery']
 

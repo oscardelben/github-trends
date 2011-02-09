@@ -31,7 +31,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth (= 4.2.6)
+  RedCloth (>= 4.2.3)
   builder (= 3.0.0)
   bundler
   fakeweb
