@@ -1,1 +1,7 @@
-I'm still working on this. It's almost ready though.
+This is the source code for http://github-trends.oscardelben.com/ which is a small sinatra app that provides a rss feed for what's popular on Github. Feeds are automatically cached in production mode. There is no expire, but there is a rake task (rake cache:flush) that you can run with cron every 3 hours to flush the cache.
+
+Please Note: if you use rvm I've included a .rvmrc file for myself, but feel free to edit or remove it if you want.
+
+Contributions:
+
+If you want to contribute (that wold be awesome), fork the project and then send me a pull request. Please add tests for it.
