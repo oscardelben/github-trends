@@ -6,6 +6,7 @@
   %body
     #container
       %h1 Github Trends
+      %a{:href => "/trends.opml"} [OPML]
 
       %div
         <a href="https://github.com/oscardelben/github-trends"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://assets2.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_right_red_aa0000.png&path=" alt="Fork me on GitHub"></a>
@@ -20,6 +21,7 @@
       - @languages.each do |language|
         %h4
           = language
+          %a{:href => "/languages/"+language+".opml"} [OPML]
           %ul
             - @contexts.each do |context|
               %li

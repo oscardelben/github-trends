@@ -52,7 +52,7 @@ get "/languages/:language.opml" do
 end
 
 get "/trends.opml" do
-  @language = LANGUAGES
+  @languages = LANGUAGES
   @contexts = CONTEXTS
 
   builder :trends
