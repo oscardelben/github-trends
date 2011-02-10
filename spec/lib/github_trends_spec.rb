@@ -2,14 +2,6 @@ require 'spec_helper'
 
 describe "GithubTrends" do
 
-  let(:url) { "https://github.com/languages/Ruby" }
-
-  before(:each) do
-    file = File.read(File.join(File.dirname(__FILE__), '..', 'mocks/ruby.html'))
-
-    FakeWeb.register_uri(:get, url, :body => file)
-  end
-
   describe "/" do
 
     it "should be successful" do
@@ -21,6 +13,14 @@ describe "GithubTrends" do
   end
 
   describe "/languages/:language/:context.xml" do
+
+    let(:url) { "https://github.com/languages/Ruby" }
+
+    before(:each) do
+      file = File.read(File.join(File.dirname(__FILE__), '..', 'mocks/ruby.html'))
+
+      FakeWeb.register_uri(:get, url, :body => file)
+    end
 
     context "invalid context" do
 

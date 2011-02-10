@@ -27,6 +27,17 @@ get "/" do
   haml(:index)
 end
 
+get "/explore/:context.xml" do
+  if !['today', 'week', 'month', 'forever'].include?(params['context'])
+    return 404
+  end
+
+  url = "https://github.com/explore/#{params['context']}"
+  @repos = Parser.new(url).trending_repos
+  @title = "Trending Repos - #{params['context'].capitalize}"
+  builder :show
+end
+
 get "/languages/:language/:context.xml" do
   if !LANGUAGES.include?(params['language']) || !CONTEXTS.include?(params['context'])
     return 404

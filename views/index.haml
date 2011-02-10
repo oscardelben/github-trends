@@ -15,6 +15,21 @@
       %p
         Just choose your language below and feel free to subscribe to as many feeds as you want. Feedback? Drop me an email at info [at] oscardelben.com.
 
+      %h3 All Languages
+      %ul
+        %li
+          %a{:href => "explore/today.xml", :class => 'feed'}
+            Today's most popular
+        %li
+          %a{:href => "explore/week.xml", :class => 'feed'}
+            This week's most popular
+        %li
+          %a{:href => "explore/month.xml", :class => 'feed'}
+            This month's most popular
+        %li
+          %a{:href => "explore/forever.xml", :class => 'feed'}
+            Forever's most popular
+
       %h3 Languages
 
       - @languages.each do |language|
