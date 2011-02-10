@@ -1,4 +1,4 @@
-require 'rubygems'
+equire 'rubygems'
 
 require 'bundler'
 Bundler.setup
@@ -38,4 +38,22 @@ get "/languages/:language/:context.xml" do
   @title = "#{params['language']} #{params['context'].gsub('_', ' ').capitalize}"
 
   builder :show
+end
+
+get "/languages/:language.opml" do
+  if !LANGUAGES.include?(params['language'])
+    return 404
+  end
+
+  @language = params['language']
+  @contexts = CONTEXTS
+
+  builder :language
+end
+
+get "/trends.opml" do
+  @language = LANGUAGES
+  @contexts = CONTEXTS
+
+  builder :trends
 end
