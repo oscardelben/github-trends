@@ -30,11 +30,14 @@
           %a{:href => "explore/forever.xml", :class => 'feed'}
             Forever's most popular
 
-      %h3 Languages
+      %h3
+        Languages
+        %a{:href => "/trends.opml", :class => 'feed'} [OPML]
 
       - @languages.each do |language|
         %h4
           = language
+          %a{:href => "/languages/"+language+".opml", :class => 'feed'} [OPML]
           %ul
             - @contexts.each do |context|
               %li
