@@ -38,7 +38,7 @@
           %ul
             - @contexts.each do |context|
               %li
-                %a{:href => "/languages/#{language}/#{context}.xml", :class => 'feed'}
+                %a{:href => "/languages/#{escape(language)}/#{context}.xml", :class => 'feed'}
                   = context.gsub('_', ' ').capitalize
 
       #footer
