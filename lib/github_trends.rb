@@ -8,6 +8,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'builder'
 require 'sinatra/cache'
+require 'uri'
 
 $:.unshift File.dirname(__FILE__)
 
@@ -38,28 +39,32 @@ get "/explore/:context.xml" do
   builder :show
 end
 
-get "/languages/:language/:context.xml" do
-  if !LANGUAGES.include?(params['language']) || !CONTEXTS.include?(params['context'])
+get %r{\/languages\/(.+)\.opml} do |language|
+  if !LANGUAGES.include(language)
     return 404
   end
 
-  url = "https://github.com/languages/#{params['language']}"
-  @repos = Parser.new(url).send(params['context'])
-
-  @title = "#{params['language']} #{params['context'].gsub('_', ' ').capitalize}"
-
-  builder :show
-end
-
-get "/languages/:language.opml" do
-  if !LANGUAGES.include?(params['language'])
-    return 404
-  end
-
-  @language = params['language']
+  @language = language
   @contexts = CONTEXTS
 
   builder :language
+end
+
+get "/languages/*/:context.xml" do
+  language = params[:splat].first
+  if !LANGUAGES.include?(language) || !CONTEXTS.include?(params['context'])
+    return 404
+  end
+
+  # Can't use CGI.escape since it would convert ' ' to + instead of %20
+  escaped = URI.escape(language, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+
+  url = "https://github.com/languages/#{escaped}"
+  @repos = Parser.new(url).send(params['context'])
+
+  @title = "#{language} #{params['context'].gsub('_', ' ').capitalize}"
+
+  builder :show
 end
 
 get "/trends.opml" do

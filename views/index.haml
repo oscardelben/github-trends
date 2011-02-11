@@ -15,9 +15,6 @@
       %p
         Just choose your language below and feel free to subscribe to as many feeds as you want. Feedback? Drop me an email at info [at] oscardelben.com.
 
-      %p
-        Plase note. There is a bug for languages that contains non-ascii characters on their name. I'm trying to solve the problem and update the code soon.
-
       %h3 All Languages
       %ul
         %li
@@ -40,7 +37,7 @@
       - @languages.each do |language|
         %h4
           = language
-          %a{:href => "/languages/"+language+".opml", :class => 'feed'} [OPML]
+          %a{:href => "/languages/"+escape(language)+".opml", :class => 'feed'} [OPML]
           %ul
             - @contexts.each do |context|
               %li

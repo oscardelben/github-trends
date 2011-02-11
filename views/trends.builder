@@ -6,7 +6,7 @@ xml.opml :version => "1.0" do
   xml.body do
     @contexts.each do |context|
       @languages.each do |language|
-        xml.outline :title => "#{language} - #{context.gsub('_', ' ').capitalize}", :text => "#{language} - #{context.gsub('_', ' ').capitalize}", :type => "rss", :version => "RSS", :xmlUrl => "http://github-trends.oscardelben.com/languages/#{language}/#{context}.xml", :htmlUrl => "http://github-trends.oscardelben.com/"
+        xml.outline :title => "#{language} - #{context.gsub('_', ' ').capitalize}", :text => "#{language} - #{context.gsub('_', ' ').capitalize}", :type => "rss", :version => "RSS", :xmlUrl => "http://github-trends.oscardelben.com/languages/#{escape(language)}/#{context}.xml", :htmlUrl => "http://github-trends.oscardelben.com/"
       end
     end
   end
