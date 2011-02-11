@@ -40,7 +40,7 @@ get "/explore/:context.xml" do
 end
 
 get %r{\/languages\/(.+)\.opml} do |language|
-  if !LANGUAGES.include(language)
+  if !LANGUAGES.include?(language)
     return 404
   end
 
