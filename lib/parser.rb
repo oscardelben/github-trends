@@ -24,8 +24,10 @@ class Parser
   def trending_repos
     section_name = 'Trending Repos'
     elements = @doc.xpath("//h2[contains(.,'#{section_name}')]/following-sibling::ol/li/h3")
-    
-    extract_repos(elements) 
+    repos = extract_repos(elements) 
+        
+    descriptions  = @doc.xpath("//h2[contains(.,'#{section_name}')]/following-sibling::ol/li/p")
+    add_descriptions(repos, descriptions)
   end
 
   private
@@ -38,6 +40,9 @@ class Parser
 
   def extract_repos(elements)
     elements.map { |element| element.xpath('a').children.map { |text| text.to_s } }
-    
+  end
+  
+  def add_descriptions(repos, descriptions)
+    repos.each_with_index { |repos, index| repos.push descriptions[index].children.first.to_s.strip }
   end
 end

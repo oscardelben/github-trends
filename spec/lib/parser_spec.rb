@@ -136,11 +136,11 @@ describe Parser do
     end
     
     it "should return a list of repos" do
-      expected = [['mrdoob', 'three.js'],
-        ['mozilla', 'narcissus'],
-        ['twinbit', 'Drupal-APT-Xapian'],
-        ['redsand', 'bl4ckJack'],
-        ['jgv', 'is-the-L-train-fucked']]
+      expected = [['mrdoob', 'three.js', 'Javascript 3D Engine'],
+        ['mozilla', 'narcissus', 'The Narcissus meta-circular JavaScript interpreter'],
+        ['twinbit', 'Drupal-APT-Xapian', 'APT Xapian Drupal module'],
+        ['redsand', 'bl4ckJack', ''],
+        ['jgv', 'is-the-L-train-fucked', "Simple utility to let you know if the L train isn't running well. Uses the MTA's API."]]
 
       Parser.new(url).trending_repos.should == expected
     end

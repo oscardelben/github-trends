@@ -9,7 +9,7 @@ xml.rss :version => "2.0" do
       xml.item do
         xml.title "#{repo[0]} / #{repo[1]}"
         xml.link "http://github.com/#{repo[0]}/#{repo[1]}"
-        xml.description 
+        xml.description repo[2]
         xml.pubDate
         xml.guid "http://github.com/#{repo[0]}/#{repo[1]}" 
       end
