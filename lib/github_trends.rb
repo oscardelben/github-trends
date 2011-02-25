@@ -60,7 +60,7 @@ get "/languages/*/:context.xml" do
   escaped = URI.escape(language, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
 
   url = "https://github.com/languages/#{escaped}"
-  @repos = Parser.new(url).send(params['context'])
+  @repos = Parser.new(url).send(params['context']).map{ |repo| repo << Parser.fetch_description("https://github.com/#{repo[0]}/#{repo[1]}") }
 
   @title = "#{language} #{params['context'].gsub('_', ' ').capitalize}"
 
@@ -73,3 +73,4 @@ get "/trends.opml" do
 
   builder :trends
 end
+

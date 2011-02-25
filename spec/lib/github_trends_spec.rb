@@ -15,11 +15,16 @@ describe "GithubTrends" do
   describe "/languages/:language/:context.xml" do
 
     let(:url) { "https://github.com/languages/Ruby" }
+    let(:description_url) { %r|https://github\.com/\w+/\w+| }
 
     before(:each) do
       file = File.read(File.join(File.dirname(__FILE__), '..', 'mocks/ruby.html'))
 
       FakeWeb.register_uri(:get, url, :body => file)
+
+      file = File.read(File.join(File.dirname(__FILE__), '..', 'mocks/navigasmic.html'))
+
+      FakeWeb.register_uri(:get, description_url, :body => file)
     end
 
     context "invalid context" do
@@ -48,9 +53,10 @@ describe "GithubTrends" do
 
         %w!kaminari prattle rails_admin cylon blueprint-css!.each do |repo|
           last_response.body.should include(repo)
+          last_response.body.should include('Semantic navigation for Rails')
         end
 
-        last_response.body.should include("Ruby Most watched today")   
+        last_response.body.should include("Ruby Most watched today")
       end
 
     end
@@ -59,3 +65,4 @@ describe "GithubTrends" do
 
 
 end
+

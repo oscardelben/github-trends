@@ -11,6 +11,11 @@ class Parser
     'Most Forked Overall'
   ]
 
+  # Needs to be done from the repository's page
+  def self.fetch_description(url)
+    Nokogiri::HTML(open(url)).xpath("id('repository_description')/p").children.first.to_s.strip
+  end
+
   def initialize(url)
     @doc = Nokogiri::HTML(open(url))
   end
@@ -24,8 +29,8 @@ class Parser
   def trending_repos
     section_name = 'Trending Repos'
     elements = @doc.xpath("//h2[contains(.,'#{section_name}')]/following-sibling::ol/li/h3")
-    repos = extract_repos(elements) 
-        
+    repos = extract_repos(elements)
+
     descriptions  = @doc.xpath("//h2[contains(.,'#{section_name}')]/following-sibling::ol/li/p")
     add_descriptions(repos, descriptions)
   end
@@ -34,15 +39,16 @@ class Parser
 
   def fetch_repos(section_name)
     elements = @doc.xpath("//h3[contains(.,'#{section_name}')]/following-sibling::ul/li")
-    
-   extract_repos(elements) 
+
+   extract_repos(elements)
   end
 
   def extract_repos(elements)
     elements.map { |element| element.xpath('a').children.map { |text| text.to_s } }
   end
-  
+
   def add_descriptions(repos, descriptions)
     repos.each_with_index { |repos, index| repos.push descriptions[index].children.first.to_s.strip }
   end
 end
+

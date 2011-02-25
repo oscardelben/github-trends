@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Parser do
 
   context "Languages" do
-  
+
     let(:url) { "https://github.com/languages/Ruby" }
-    
+
     before(:each) do
       file = File.read(File.join(File.dirname(__FILE__), '..', 'mocks/ruby.html'))
 
@@ -15,8 +15,8 @@ describe Parser do
     describe "#most_watched_today" do
 
       it "should return todays' most watched repos" do
-        expected = [['amatsuda', 'kaminari'], 
-          ['evanphx', 'prattle'], 
+        expected = [['amatsuda', 'kaminari'],
+          ['evanphx', 'prattle'],
           ['sferik', 'rails_admin'],
           ['dmathieu', 'cylon'],
           ['joshuaclayton', 'blueprint-css']]
@@ -122,11 +122,27 @@ describe Parser do
       end
 
     end
+  end
 
+  context "Descriptions" do
+    let(:url) { "https://github.com/jejacks0n/navigasmic" }
+
+    before(:each) do
+      file = File.read(File.join(File.dirname(__FILE__), '..', 'mocks/navigasmic.html'))
+
+      FakeWeb.register_uri(:get, url, :body => file)
+    end
+
+    describe "fetching a description" do
+      it "should return the repository description from the repository's homepage" do
+        expected = "Semantic navigation for Rails"
+        Parser.fetch_description(url).should == expected
+      end
+    end
   end
 
   context "All languages" do
-    
+
     let(:url) { 'https://github.com/explore' }
 
     before(:each) do
@@ -134,7 +150,7 @@ describe Parser do
 
       FakeWeb.register_uri(:get, url, :body => file)
     end
-    
+
     it "should return a list of repos" do
       expected = [['mrdoob', 'three.js', 'Javascript 3D Engine'],
         ['mozilla', 'narcissus', 'The Narcissus meta-circular JavaScript interpreter'],
@@ -148,3 +164,4 @@ describe Parser do
   end
 
 end
+
